@@ -10,18 +10,18 @@
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     />
   </head>
-  <body style = "background-image: url('../static/starfield.jpg'); color: aliceblue;">
+  <body>
     <div class="container">
       <!-- Add Jumbotron to Header -->
-      <div class="bg-image jumbotron text-center" style = "background: url('../static/red_planet.jpg'); background-position: right bottom; background-size: cover;">
-        <h1 >Mission to Mars</h1>
+      <div class="jumbotron text-center" style="background-color: #f3d6ca">
+        <h1 style="color: #d16b3b">Mission to Mars</h1>
         <!-- Add a button to activate scraping script -->
-        <p><a class="btn btn-danger btn-lg" href="../scraping" role="button">Scrape New Data</a></p>
+        <p><a class="btn btn-danger btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
       </div>
 
       <!-- Add section for Mars News -->
       <div class="row" id="mars-news">
-        <div class="col-md-12">
+        <div class="col-sm-12">
           <div class="media">
             <div class="media-body">
               <h2>Latest Mars News</h2>
@@ -47,9 +47,10 @@
 
         <div class="col-md-4">
           <!-- Mars Facts -->
-          <div class="row" id="mars-facts">
-            <h4>Mars Facts</h4>
-            {{ mars.facts | safe }}
+          <div class="row" id="mars-facts" >
+            <h2>Mars Facts</h2>
+             <table border="5"  style="background-color: #f3d6ca" class="dataframe table table-striped" 
+             src="{{ mars.facts | safe }}"></table>
           </div>
         </div>
       </div>
@@ -61,9 +62,9 @@
         </div>
 
         {% for hemisphere in mars.hemispheres %}
-        <div class="col-md-6">
-          <div class="thumbnail">
-            <img src="{{hemisphere.img_url | default('static/images/error.png', true)}}" alt="...">
+        <div class="col-md-3">
+          <div class="img-thumbnail">
+            <img src="{{hemisphere.img_url | default('static/images/error.png', true)}}" alt="..." class="img-thumbnail">
             <div class="caption">
               <h3>{{hemisphere.title}}</h3>
             </div>
